@@ -1,193 +1,193 @@
-# 元思想 (Yuansixiang)
+# Yuansixiang (元思想)
 
-教育陪伴平台 - 微信小程序 + H5 多端应用
+Educational Companion Platform - WeChat Mini Program + H5 Multi-platform Application
 
-## 技术栈
+## Tech Stack
 
-### 前端
+### Frontend
 
-- **框架**: Taro 3.x + React 18 + TypeScript
-- **状态管理**: Redux Toolkit
-- **UI 组件**: NutUI 4.x
-- **样式**: Tailwind CSS + SCSS
-- **数据验证**: Zod
-- **国际化**: i18next + react-i18next
+- **Framework**: Taro 3.x + React 18 + TypeScript
+- **State Management**: Redux Toolkit
+- **UI Components**: NutUI 4.x
+- **Styling**: Tailwind CSS + SCSS
+- **Data Validation**: Zod
+- **Internationalization**: i18next + react-i18next
 
-### 后端
+### Backend
 
-- **框架**: Nest.js + TypeScript
-- **数据库**: MongoDB + Mongoose
-- **认证**: JWT
-- **验证**: class-validator
+- **Framework**: Nest.js + TypeScript
+- **Database**: MongoDB + Mongoose
+- **Authentication**: JWT
+- **Validation**: class-validator
 
-### 部署
+### Deployment
 
-- **容器化**: Docker
+- **Containerization**: Docker
 - **CI/CD**: GitHub Actions
-- **云服务**: 阿里云 (ECS + OSS + CDN + MongoDB)
+- **Cloud Services**: Alibaba Cloud (ECS + OSS + CDN + MongoDB)
 
-## 项目结构
+## Project Structure
 
 ```
 yuansixiang/
 ├── packages/
-│   ├── app/                 # Taro 应用（小程序 + H5）
-│   ├── shared/              # 共享代码（类型、schemas、i18n）
-│   └── server/              # 后端 API 服务
-├── pnpm-workspace.yaml      # Monorepo 配置
+│   ├── app/                 # Taro app (Mini Program + H5)
+│   ├── shared/              # Shared code (types, schemas, i18n)
+│   └── server/              # Backend API service
+├── pnpm-workspace.yaml      # Monorepo configuration
 └── package.json
 ```
 
-## 快速开始
+## Getting Started
 
-### 安装依赖
+### Install Dependencies
 
 ```bash
 pnpm install
 ```
 
-## 服务管理
+## Service Management
 
-### 启动服务
+### Starting Services
 
-#### 1. 启动 MongoDB 数据库
+#### 1. Start MongoDB Database
 
 ```bash
-# 使用 Homebrew 启动
+# Start with Homebrew
 brew services start mongodb-community
 
-# 或使用 Docker 启动
+# Or start with Docker
 docker-compose up -d
 ```
 
-#### 2. 启动后端 API 服务
+#### 2. Start Backend API Service
 
 ```bash
-# 在项目根目录执行
+# Run in project root directory
 pnpm dev:server
 
-# 服务地址：http://localhost:3000/api
-# API 健康检查：http://localhost:3000/api/health
+# Service URL: http://localhost:3000/api
+# API Health Check: http://localhost:3000/api/health
 ```
 
-#### 3. 启动前端 H5 应用
+#### 3. Start Frontend H5 Application
 
 ```bash
-# 在项目根目录执行
+# Run in project root directory
 pnpm dev:h5
 
-# 服务地址：http://localhost:10086
+# Service URL: http://localhost:10086
 ```
 
-#### 4. 启动微信小程序
+#### 4. Start WeChat Mini Program
 
 ```bash
-# 在项目根目录执行
+# Run in project root directory
 pnpm dev:weapp
 
-# 使用微信开发者工具打开 packages/app 目录
+# Open packages/app directory with WeChat DevTools
 ```
 
-#### 一键启动所有服务
+#### Start All Services
 
 ```bash
-# 1. 启动 MongoDB
+# 1. Start MongoDB
 brew services start mongodb-community
 
-# 2. 启动后端（推荐新开终端）
+# 2. Start backend (recommended in a new terminal)
 pnpm dev:server
 
-# 3. 启动前端 H5（推荐新开终端）
+# 3. Start frontend H5 (recommended in a new terminal)
 pnpm dev:h5
 ```
 
-### 关闭服务
+### Stopping Services
 
-#### 关闭 MongoDB
+#### Stop MongoDB
 
 ```bash
-# 使用 Homebrew 关闭
+# Stop with Homebrew
 brew services stop mongodb-community
 
-# 或关闭 Docker 容器
+# Or stop Docker container
 docker-compose down
 ```
 
-#### 关闭后端服务
+#### Stop Backend Service
 
 ```bash
-# 方法1：按进程名关闭
+# Method 1: Stop by process name
 pkill -f "nest start"
 
-# 方法2：按端口关闭
+# Method 2: Stop by port
 lsof -ti:3000 | xargs kill -9
 ```
 
-#### 关闭前端 H5 服务
+#### Stop Frontend H5 Service
 
 ```bash
-# 方法1：按进程名关闭
+# Method 1: Stop by process name
 pkill -f "taro build"
 
-# 方法2：按端口关闭
+# Method 2: Stop by port
 lsof -ti:10086 | xargs kill -9
 ```
 
-#### 一键关闭所有服务
+#### Stop All Services
 
 ```bash
-# 关闭前端
+# Stop frontend
 pkill -f "taro build"
 lsof -ti:10086 | xargs kill -9
 
-# 关闭后端
+# Stop backend
 pkill -f "nest start"
 lsof -ti:3000 | xargs kill -9
 
-# 关闭 MongoDB
+# Stop MongoDB
 brew services stop mongodb-community
 ```
 
-### 检查服务状态
+### Check Service Status
 
 ```bash
-# 检查端口占用情况
+# Check port usage
 lsof -i:3000,10086,27017
 
-# 检查 MongoDB 状态
+# Check MongoDB status
 brew services list | grep mongodb
 
-# 检查进程状态
+# Check process status
 ps aux | grep -E "nest|taro|mongod" | grep -v grep
 
-# 测试后端 API
+# Test backend API
 curl http://localhost:3000/api/health
 
-# 测试前端 H5
+# Test frontend H5
 curl -I http://localhost:10086
 ```
 
-### 构建生产版本
+### Build Production Version
 
 ```bash
-# 微信小程序
+# WeChat Mini Program
 pnpm build:weapp
 
 # H5
 pnpm build:h5
 
-# 后端
+# Backend
 pnpm build:server
 ```
 
-## 开发规范
+## Development Guidelines
 
-- 使用 TypeScript 严格模式
-- 遵循 ESLint 和 Prettier 规范
-- 提交前运行 `pnpm lint` 和 `pnpm type-check`
-- 使用 Conventional Commits 规范提交信息
+- Use TypeScript strict mode
+- Follow ESLint and Prettier standards
+- Run `pnpm lint` and `pnpm type-check` before committing
+- Use Conventional Commits specification for commit messages
 
-## 环境要求
+## Requirements
 
 - Node.js >= 18.0.0
 - pnpm >= 8.0.0
