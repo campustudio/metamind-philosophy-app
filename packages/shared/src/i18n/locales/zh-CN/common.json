@@ -1,0 +1,29 @@
+{
+  "app": {
+    "name": "元思想",
+    "slogan": "智慧成长，思想陪伴"
+  },
+  "button": {
+    "confirm": "确认",
+    "cancel": "取消",
+    "submit": "提交",
+    "save": "保存",
+    "delete": "删除",
+    "edit": "编辑",
+    "back": "返回",
+    "next": "下一步",
+    "prev": "上一步"
+  },
+  "message": {
+    "success": "操作成功",
+    "error": "操作失败",
+    "loading": "加载中...",
+    "networkError": "网络错误，请稍后重试"
+  },
+  "validation": {
+    "required": "此项为必填项",
+    "invalidFormat": "格式不正确",
+    "tooShort": "内容太短",
+    "tooLong": "内容太长"
+  }
+}

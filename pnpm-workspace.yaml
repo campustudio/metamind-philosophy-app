@@ -1,0 +1,15 @@
+packages:
+  - packages/*
+
+ignoredBuiltDependencies:
+  - '@nestjs/core'
+  - '@parcel/watcher'
+  - '@swc/core'
+  - core-js
+  - core-js-pure
+  - esbuild
+  - less
+  - swiper
+
+onlyBuiltDependencies:
+  - bcrypt

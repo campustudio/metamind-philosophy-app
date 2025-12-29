@@ -1,0 +1,83 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install pnpm
+        run: npm install -g pnpm
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Lint
+        run: pnpm lint
+      
+      - name: Type check
+        run: pnpm type-check
+
+  build-weapp:
+    needs: lint-and-typecheck
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install pnpm
+        run: npm install -g pnpm
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Build WeApp
+        run: pnpm build:weapp
+
+  build-and-deploy-h5:
+    needs: lint-and-typecheck
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v3
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      
+      - name: Install pnpm
+        run: npm install -g pnpm
+      
+      - name: Install dependencies
+        run: pnpm install
+      
+      - name: Build H5
+        run: pnpm build:h5
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+      
+      # - name: Upload to Aliyun OSS
+      #   uses: fangbinwei/aliyun-oss-website-action@v1
+      #   with:
+      #     accessKeyId: ${{ secrets.ALIYUN_ACCESS_KEY_ID }}
+      #     accessKeySecret: ${{ secrets.ALIYUN_ACCESS_KEY_SECRET }}
+      #     bucket: yuansixiang-h5
+      #     endpoint: oss-cn-hangzhou.aliyuncs.com
+      #     folder: packages/app/dist/h5

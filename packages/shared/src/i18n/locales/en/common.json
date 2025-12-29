@@ -1,0 +1,29 @@
+{
+  "app": {
+    "name": "Yuansixiang",
+    "slogan": "Wisdom Growth, Thoughtful Companionship"
+  },
+  "button": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "submit": "Submit",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "back": "Back",
+    "next": "Next",
+    "prev": "Previous"
+  },
+  "message": {
+    "success": "Success",
+    "error": "Error",
+    "loading": "Loading...",
+    "networkError": "Network error, please try again later"
+  },
+  "validation": {
+    "required": "This field is required",
+    "invalidFormat": "Invalid format",
+    "tooShort": "Content is too short",
+    "tooLong": "Content is too long"
+  }
+}
