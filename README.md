@@ -1,4 +1,4 @@
-# Yuansixiang (元思想)
+# Metamind
 
 Educational Companion Platform - WeChat Mini Program + H5 Multi-platform Application
 
